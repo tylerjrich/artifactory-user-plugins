@@ -53,7 +53,7 @@ executions {
         def timeUnit = params['timeUnit'] ? params['timeUnit'][0] as String : DEFAULT_TIME_UNIT
         def timeInterval = params['timeInterval'] ? params['timeInterval'][0] as int : DEFAULT_TIME_INTERVAL
         def repos = params['repos'] as String[]
-        def dryRun = params['dryRun'] ? new Boolean(params['dryRun'][0]) : false
+        def dryRun = params['dryRun'] ? new Boolean(params['dryRun'][0]) : true
         def disablePropertiesSupport = params['disablePropertiesSupport'] ? new Boolean(params['disablePropertiesSupport'][0]) : false
         Global.paceTimeMS = params['paceTimeMS'] ? params['paceTimeMS'][0] as int : 0
 
@@ -125,7 +125,7 @@ if ( deprecatedConfigFile.exists() ) {
 }
 
 if ( configFile.exists() ) {
-  
+
     def config = new JsonSlurper().parse(configFile.toURL())
     log.info "Schedule job policy list: $config.policies"
 
@@ -144,7 +144,7 @@ if ( configFile.exists() ) {
                 artifactCleanup( timeUnit, timeInterval, repos, log, paceTimeMS, dryRun, disablePropertiesSupport )
             }
         }
-    }  
+    }
 }
 
 if ( deprecatedConfigFile.exists() && configFile.exists() ) {
