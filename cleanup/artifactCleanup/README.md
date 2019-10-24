@@ -83,14 +83,14 @@ Executing
 
 To execute the plugin:
 
-For Artifactory 4.x: 
-`curl -X POST -v -u admin:password "http://localhost:8080/artifactory/api/plugins/execute/cleanup?params=timeUnit=month|timeInterval=1|repos=libs-release-local|dryRun=true|paceTimeMS=2000|disablePropertiesSupport=true"`
-
 For Artifactory 5.x or higher:
 `curl -X POST -v -u admin:password "http://localhost:8080/artifactory/api/plugins/execute/cleanup?params=timeUnit=month;timeInterval=1;repos=libs-release-local;dryRun=true;paceTimeMS=2000;disablePropertiesSupport=true"`
 
 For Artifactory 5.x or higher, using the depracted `months` parameter:
 `curl -X POST -v -u admin:password "http://localhost:8080/artifactory/api/plugins/execute/cleanup?params=months=1;repos=libs-release-local;dryRun=true;paceTimeMS=2000;disablePropertiesSupport=true"`
+
+For Artifactory 4.x:
+`curl -X POST -v -u admin:password "http://localhost:8080/artifactory/api/plugins/execute/cleanup?params=timeUnit=month|timeInterval=1|repos=libs-release-local|dryRun=true|paceTimeMS=2000|disablePropertiesSupport=true"`
 
 Admin users and users inside the `cleaners` group can execute the plugin.
 
@@ -112,9 +112,8 @@ The plugin have 4 control options:
 `curl -X POST -v -u admin:password "http://localhost:8080/artifactory/api/plugins/execute/cleanupCtl?params=command=resume"`
 - `adjustPaceTimeMS`: Modify the running delay factor by increasing/decreasing the delay value. Example:
 
+For Artifactory 5.x or higher:
+`curl -X POST -v -u admin:password "http://localhost:8080/artifactory/api/plugins/execute/cleanupCtl?params=command=adjustPaceTimeMS;value=-1000"`
 
 For Artifactory 4.x
-`curl -X POST -v -u admin:password "http://localhost:8080/artifactory/api/plugins/execute/cleanupCtl?params=command=adjustPaceTimeMS|value=-1000"` 
-
-For Artifactory 5.x or higher:
-`curl -X POST -v -u admin:password "http://localhost:8080/artifactory/api/plugins/execute/cleanupCtl?params=command=adjustPaceTimeMS;value=-1000"` 
+`curl -X POST -v -u admin:password "http://localhost:8080/artifactory/api/plugins/execute/cleanupCtl?params=command=adjustPaceTimeMS|value=-1000"`
